@@ -1,0 +1,8 @@
+
+li{
+  list-style-type: none;
+}
+.header{
+  grid-area: h;
+  background-color:aqua;
+}
