@@ -4,6 +4,10 @@ grid-template-columns: 2fr 10fr;
 }
 .dialogItem{
 page-break-after: 10px;
+color: white;
+}
+.activeLink{
+color:blue;
 }
 .dialog.active{
    color: gold;

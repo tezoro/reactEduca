@@ -2,11 +2,23 @@
 grid-area: n;
 background-color: aquamarine;
 padding:20px;
+border-radius: 3%;
+text-align: center;
+}
+.item{
+   padding: 5px;
 }
 .item a{
+   padding: 2px;
+   border-radius: 5%;
    text-decoration: none;
    color:white;
 }
 .item .activeLink{
-   color:gold;
+   color:black;
+   background-color: brown;
+}
+.item a:hover{
+   border-radius: 5%;
+   background-color: brown;
 }

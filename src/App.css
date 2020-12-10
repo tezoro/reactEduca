@@ -7,11 +7,12 @@
   grid-template-areas: 
   "h h "
   "n c ";
-  grid-gap: 10px;
+  grid-gap: 3px;
 }
 .app-wrapper-content{
 grid-area: c;
 background-color: chartreuse;
+border-radius: 2%;
 }
 
 
