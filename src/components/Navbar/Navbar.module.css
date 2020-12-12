@@ -22,3 +22,24 @@ text-align: center;
    border-radius: 5%;
    background-color: brown;
 }
+.friends{
+   display: grid;
+   grid-template-columns: 2fr 2fr 2fr;
+   grid-template-rows: 2fr 2fr;
+   grid-template-areas:
+   "a a a"
+   "b c d";
+   grid-gap:2px ;
+}
+.item0{
+   grid-area: a;
+}
+.item1{
+   grid-area:b;
+}
+.item2{
+   grid-area:c;
+}
+.item3{
+   grid-area:d; 
+}

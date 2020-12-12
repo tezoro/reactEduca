@@ -19,6 +19,12 @@ function Navbar(){
       <div className={s.item}>
          <NavLink to="Settings" activeClassName={s.activeLink}>Settings</NavLink >
       </div>
+      <div className={s.friends}>
+         <div className="s.item0">Friends</div>
+         <div className={s.item1}>aleksey</div>
+         <div className={s.item2}>orestovych</div>
+         <div className={s.item3}>nikynos</div>
+      </div>
    </nav>
    )
 }

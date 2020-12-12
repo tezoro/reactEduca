@@ -12,3 +12,7 @@ color:blue;
 .dialog.active{
    color: gold;
 }
+img{
+   width: 30px;
+   border-radius: 50%;
+}

@@ -2,19 +2,25 @@ import React from 'react';
 import s from "./MyPosts.module.css";
 import Post from './Posts/Post';
 
-function MyPosts(props){
+function MyPosts(props){ 
+     debugger   
    let postsElement = props.posts
-   .map(p =>  <Post message={p.message} likeCounts={p.likesCount} id={p.id} />
-      )
+   .map(p =><Post message={p.message} likeCounts={p.likesCount} id={p.id} /> )
+
+      let newPostElement=React.createRef()
+      let addPost=()=>{
+          let text = newPostElement.current.value
+          props.addPost(text)
+          }
 
    return(
       <div className={s.postsBlock}>
          <h3> my posts</h3>
          <div>
-            <textarea></textarea>
+            <textarea ref={newPostElement} ></textarea>
          </div>
          <div>
-            <button>Add post</button>
+            <button onClick={addPost} >Add post</button>
          </div>
          <div className={s.posts}>
          <Post />
