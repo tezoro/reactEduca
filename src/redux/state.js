@@ -1,3 +1,4 @@
+import { rerenderEntireTree } from "../render"
 
 let state={
    profilePage:{
@@ -25,6 +26,15 @@ let state={
      ],
   },
 }
+
+export let sendMessage=(message)=>{
+   let newMessage={
+      id:6,
+      message:message,
+   }
+   state.dialogPage.messages.push(newMessage)
+} 
+
 export let addPost=(postMessage)=>{
    let newPost={
       id: 5,
@@ -32,5 +42,6 @@ export let addPost=(postMessage)=>{
       likesCount: 0
    }
    state.profilePage.posts.push(newPost)
+   rerenderEntireTree(state)
 }
 export default state

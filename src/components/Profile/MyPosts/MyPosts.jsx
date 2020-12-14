@@ -7,11 +7,12 @@ function MyPosts(props){
    let postsElement = props.posts
    .map(p =><Post message={p.message} likeCounts={p.likesCount} id={p.id} /> )
 
-      let newPostElement=React.createRef()
-      let addPost=()=>{
-          let text = newPostElement.current.value
-          props.addPost(text)
-          }
+   let newPostElement=React.createRef()
+   let addPost=()=>{
+         let text = newPostElement.current.value
+         props.addPost(text)
+         newPostElement.current.value=''
+         }
 
    return(
       <div className={s.postsBlock}>

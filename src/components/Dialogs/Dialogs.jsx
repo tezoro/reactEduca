@@ -12,10 +12,10 @@ const Dialogs=(props)=>{
       .map(m =>  <Message message={m.message} />)
 
    let sendMessage=React.createRef()
-
+   
    let addMessage=()=>{
       var text=sendMessage.current.value
-      alert(text)
+      props.sendMessage(text)
    }
 
    return(
