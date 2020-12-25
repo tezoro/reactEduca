@@ -1,18 +1,22 @@
-.dialogs{
-display: grid;
-grid-template-columns: 2fr 10fr;
+.dialogs {
+   display: grid;
+   grid-template-columns: 2fr 10fr;
 }
-.dialogItem{
-page-break-after: 10px;
-color: white;
+
+.dialogItem {
+   page-break-after: 10px;
+   color: white;
 }
-.activeLink{
-color:blue;
+
+.activeLink {
+   color: blue;
 }
-.dialog.active{
+
+.dialog.active {
    color: gold;
 }
-img{
+
+img {
    width: 30px;
    border-radius: 50%;
 }
