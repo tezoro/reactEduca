@@ -52,27 +52,31 @@ let initialState = {
    ],
 }
 const dialogsReducer = (state = initialState, action) => {
-   switch (action.type) {
-      case ADD_SMS:
-         let newMessage = {
-            id: 6,
-            message: state.newMessageText,
-         }
-         state.messages.push(newMessage)
-         state.newMessageText = ''
-         return state
 
-      case UPDATE_NEW_SMS_TEXT:
-         state.newMessageText = action.newText
-         return state
+   switch (action.type) {
+      
+       case UPDATE_NEW_SMS_TEXT:
+          return{
+            ...state,
+            newMessageText : action.newText
+         }
+        
+      case ADD_SMS: 
+            return {
+            ...state,
+            newMessageText:'',
+            messages:[...state.messages, {id: 6, message: state.newMessageText,}],
+         }
+      
       default:
          return state
    }
 }
 
-export const addMessageTextCreator = () => ({
-   type: ADD_SMS
-})
+export const addMessageTextCreator = () =>
+   ({
+      type: ADD_SMS
+   })
 export const updateMessageTextCreator = (text) =>
    ({
       type: UPDATE_NEW_SMS_TEXT,
