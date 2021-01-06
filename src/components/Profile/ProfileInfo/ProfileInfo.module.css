@@ -1,16 +1,19 @@
-
-.profile__img{
+.profile__img {
   width: 991.667px;
   height: 200px;
-border-radius: 3%;
+  border-radius: 3%;
 
 }
-.ava_img{
+
+.ava_img {
   width: 50px;
+  height: 50px;
 }
-.discriptionBlock{
-  padding:10px;
+
+.discriptionBlock {
+  padding: 10px;
 }
-.item{
-   color:greenyellow;
+
+.item {
+  color: greenyellow;
 }
