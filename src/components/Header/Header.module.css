@@ -1,10 +1,14 @@
-
-li{
+li {
   list-style-type: none;
 }
-.header{
+
+.header {
   grid-area: h;
-  background-color:aqua;
+  background-color: aqua;
   border-radius: 3%;
 
+}
+
+.loginBlock {
+  float: right;
 }

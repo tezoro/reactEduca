@@ -1,8 +1,7 @@
 .profile__img {
-  width: 991.667px;
   height: 200px;
-  border-radius: 3%;
-
+  width: 200px;
+  border-radius: 0;
 }
 
 .ava_img {
