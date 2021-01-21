@@ -15,9 +15,10 @@ let Users = (props) => {
    }
    return (
       <div>
-         <div className="a">
+         <div >
             {pages.map((p) => {
-               return <span onClick={(e) => { props.onPageChanged(p) }} className={props.currentPage === p && stylles.selectedPage}>{p}</span>
+
+               return <span onClick={(e) => { props.onPageChanged(p) }} className={props.currentPage === p && stylles.selectedPage} >{p}</span>
             })}
          </div>
          {
@@ -30,35 +31,18 @@ let Users = (props) => {
                   </div>
                   <div>
                      {u.followed ? <button disabled={props.followingInProgrees.some(id => id === u.id)} onClick={() => {
-                        props.toggleIsFollowing(true, u.id)
-                        axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
-                           withCredentials: true,
-                           headers: {
-                              "API-KEY": "8b1a1059-e38c-439b-853c-da232760d41b"
-                           }
-                        }).then(responce => {
-                           if (responce.data.resultCode == 1) {
-                              props.unfollow(u.id)
-                           }
-                           props.toggleIsFollowing(false, u.id)
+                        props.unfollow(u.id)
 
-                        })
                      }}>Unfollow</button>
                         : <button disabled={props.followingInProgrees.some(id => id === u.id)} onClick={() => {
-                           props.toggleIsFollowing(true, u.id)
-                           usersApi.followAPI(u.id).then(data => {
-                              if (data.resultCode == 0) {
-                                 props.follow(u.id)
-                              }
-                              props.toggleIsFollowing(false, u.id)
-                           })
+                           props.follow(u.id)
+
                         }} >Follow</button>}
                   </div>
                </span>
                <span>
                   <span>
                      <div>
-
                         {u.name}
                      </div>
                      <div>
