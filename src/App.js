@@ -2,6 +2,7 @@ import { BrowserRouter, Route } from 'react-router-dom'
 import './App.css'
 import DialogsContainer from './components/Dialogs/DialogsContainer'
 import HeaderContainer from './components/Header/HeaderContainer'
+import LoginPage from './components/login/login'
 import Music from './components/Music/Music'
 import Navbar from './components/Navbar/navBar'
 import News from './components/News/News'
@@ -61,6 +62,7 @@ function App(props) {
           <Route path="/music" render={()=><Music />} />
           <Route path="/settings" render={()=><Settings />} />
           <Route path="/users" render={()=><UsersContainer />} />
+          <Route path="/login" render={()=><LoginPage />} />
         </div> 
       </div>
     </BrowserRouter>

@@ -1,5 +1,4 @@
 const ADD_SMS = 'ADD-SMS'
-const UPDATE_NEW_SMS_TEXT = 'UPDATE-NEW-SMS-TEXT'
 
 let initialState = {
    messages: [{
@@ -23,7 +22,6 @@ let initialState = {
          message: 'your welcome'
       }
    ],
-   newMessageText: '',
    dialogs: [{
          id: 1,
          name: 'igor',
@@ -55,17 +53,11 @@ const dialogsReducer = (state = initialState, action) => {
 
    switch (action.type) {
       
-       case UPDATE_NEW_SMS_TEXT:
-          return{
-            ...state,
-            newMessageText : action.newText
-         }
-        
+    
       case ADD_SMS: 
             return {
             ...state,
-            newMessageText:'',
-            messages:[...state.messages, {id: 6, message: state.newMessageText,}],
+            messages:[...state.messages, {id: 6, message:action.newMessageTextBody,}],
          }
       
       default:
@@ -73,14 +65,10 @@ const dialogsReducer = (state = initialState, action) => {
    }
 }
 
-export const addMessageTextCreator = () =>
+export const addMessageTextCreator = (newMessageTextBody) =>
    ({
-      type: ADD_SMS
-   })
-export const updateMessageTextCreator = (text) =>
-   ({
-      type: UPDATE_NEW_SMS_TEXT,
-      newText: text
+      type: ADD_SMS,
+      newMessageTextBody
    })
 
 export default dialogsReducer

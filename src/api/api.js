@@ -23,6 +23,25 @@ export const usersApi = {
       return instance.get(`users?page=${currentPage}&count=${pageSise}`, ).then(responce => {
          return responce.data
       })
+   },
+   getProfile(id){
+      console.warn("obsolete object Please use profileApi object")
+   return profileApi.getProfile(id)
    }
-
+}
+export const profileApi = {
+   getProfile(id){
+   return instance.get(`profile/${id}`)
+   },
+   getStatus(id){
+      return instance.get(`profile/status/${id}`)
+   },
+   updateStatus(status){
+      return instance.put(`profile/status`, {status:status})
+   }
+}
+export const authApi={
+me(){
+   return instance.get(`auth/me`)
+}
 }

@@ -22,12 +22,6 @@ function Navbar() {
          <div className={s.item}>
             <NavLink to="users" activeClassName={s.activeLink}>Users</NavLink >
          </div>
-         <div className={s.friends}>
-            <div className="s.item0">Friends</div>
-            <div className={s.item1}>aleksey</div>
-            <div className={s.item2}>orestovych</div>
-            <div className={s.item3}>nikynos</div>
-         </div>
       </nav>
    )
 }

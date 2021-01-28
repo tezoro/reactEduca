@@ -1,6 +1,8 @@
+import { profileApi, usersApi } from "../api/api"
+
 const ADD_POST = 'ADD-POST'
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
 const SET_USER_PROFILE='SET-USER-PROFILE'
+const SET_STATUS='SET-STATUS'
 
 let initialState = {
    posts: [{
@@ -24,8 +26,8 @@ let initialState = {
          likesCount: 10
       }
    ],
-   newPostText: 'it-kamasutra.com',
-   profile:null
+   profile:null,
+   status:""
 }
 
 const profileReducer = (state = initialState, action) => {
@@ -35,18 +37,15 @@ const profileReducer = (state = initialState, action) => {
             ...state,
             profile:action.profile
          }
-
-       case UPDATE_NEW_POST_TEXT:
-         return {
+      case SET_STATUS:
+         return{
             ...state,
-            newPostText: action.newText
+            status:action.status
          }
-      
       case ADD_POST:
          return {
             ...state,
-            newPostText:'',
-            posts:[...state.posts,{id: 5, message: state.newPostText, likesCount: 0}]
+            posts:[...state.posts,{id: 5, message: action.newPostText, likesCount: 0}]
          }
 
       default:
@@ -54,17 +53,37 @@ const profileReducer = (state = initialState, action) => {
       
    }
 }
-export const setUserProfile=(profile)=>({
+const setUserProfile=(profile)=>({
    type:SET_USER_PROFILE,
    profile
 })
-export const addPostActionCreator = () => ({
-   type: ADD_POST
+
+export const getUserProfile=(userId)=>(dispatch)=>{
+    usersApi.getProfile(userId).then(response => {
+         dispatch(setUserProfile(response.data))
+      })
+}
+export const getUserStatus=(userId)=>(dispatch)=>{
+    profileApi.getStatus(userId).then(response => {
+         dispatch(setStatusAC(response.data))
+      })
+}
+export const updateUserStatus=(status)=>(dispatch)=>{
+    profileApi.updateStatus(status).then(response => {
+       if(response.data.resultCode===0){
+         dispatch(setStatusAC(status))}
+      })
+}
+
+export const addPostActionCreator = (newPostText) => ({
+   type: ADD_POST,
+   newPostText
 })
-export const updateNewPostTextActionCreator = text =>
+export const setStatusAC = status =>
    ({
-      type: UPDATE_NEW_POST_TEXT,
-      newText: text
+      type: SET_STATUS,
+      status
    })
+
 
 export default profileReducer
