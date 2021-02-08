@@ -1,3 +1,5 @@
+import { connect } from 'react-redux'
+import React from 'react'
 import { BrowserRouter, Route } from 'react-router-dom'
 import './App.css'
 import DialogsContainer from './components/Dialogs/DialogsContainer'
@@ -9,6 +11,9 @@ import News from './components/News/News'
 import ProfileContainer from './components/Profile/ProfileContainer'
 import Settings from './components/Settings/Settings'
 import  UsersContainer  from './components/Users/UsersContainer'
+import { getAuthUserData } from './redux/auth-reducer'
+import { initializeApp } from './redux/app-reducer'
+import Preloader from './components/common/preloader'
 
 //!tymcasovo vydalyty obovjaskovo
 var data = [
@@ -49,14 +54,22 @@ var data = [
 ];
 //!
 
-function App(props) {
-  return (
+class App extends React.Component {
+   componentDidMount(){
+      this.props.initializeApp()
+   }
+   render(){
+      if(!this.props.initialized){ 
+         return <Preloader />
+      }
+
+     return (
     <BrowserRouter>
       <div className="app-wrapper">
           <HeaderContainer />
           <Navbar />
         <div className='app-wrapper-content'>
-          <Route path="/dialogs" render={() => <DialogsContainer store={props.store} />} />
+          <Route path="/dialogs" render={() => <DialogsContainer store={this.props.store} />} />
           <Route path="/profile/:userId?" render={() => <ProfileContainer  />} />
           <Route path="/news" render={()=><News recipes={data}/>} />
           <Route path="/music" render={()=><Music />} />
@@ -68,5 +81,10 @@ function App(props) {
     </BrowserRouter>
       )
   }
+}
 
-export default App  
+const mapStateToProps=(state)=>({
+initialized:state.app.initialized
+})
+
+export default connect(mapStateToProps ,{initializeApp})(App)  

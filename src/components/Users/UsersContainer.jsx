@@ -9,6 +9,7 @@ import Preloader from '../common/preloader'
 import { usersApi } from '../../api/api'
 import { withAuthRedirect } from '../../hoc/withAuthRedirect'
 import { compose } from 'redux'
+import { getTotalUsersCount, getPageSize, getCurrentPage, getIsFetching, getFollowingInProgrees, getUsers1 } from '../../redux/users-selectors'
 
 class UsersContainer extends React.Component {
 
@@ -28,6 +29,7 @@ class UsersContainer extends React.Component {
    }
 
    render() {
+      console.log("render")
       return <>
          {this.props.isFetching ? <Preloader /> : null}
          <Users totalUsersCount={this.props.totalUsersCount}
@@ -43,7 +45,7 @@ class UsersContainer extends React.Component {
    }
 }
 
-let mapStateToProps = (state) => {
+/* let mapStateToProps = (state) => {
    return {
       users: state.usersPage.users,
       pageSize: state.usersPage.pageSize,
@@ -51,6 +53,17 @@ let mapStateToProps = (state) => {
       currentPage: state.usersPage.currentPage,
       isFetching: state.usersPage.isFetching,
       followingInProgrees: state.usersPage.followingInProgrees
+   }
+} */
+let mapStateToProps = (state) => {
+   console.log("mapStaateToProps")
+   return {
+      users: getUsers1(state),
+      pageSize: getPageSize(state),
+      totalUsersCount: getTotalUsersCount(state),
+      currentPage: getCurrentPage(state),
+      isFetching: getIsFetching(state),
+      followingInProgrees: getFollowingInProgrees(state)
    }
 }
 /* let mapDispatchToProps = (dispatch) => {
@@ -78,5 +91,5 @@ let mapStateToProps = (state) => {
 
 export default compose(
    connect(mapStateToProps, { follow, unfollow, setCurrentPage, toggleIsFollowing, getUsers }),
-   withAuthRedirect
+   //withAuthRedirect
 )(UsersContainer)

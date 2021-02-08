@@ -5,6 +5,7 @@ import ProfileInfo from './ProfileInfo/ProfileInfo';
 
 
 function Profile(props) {
+   console.log("profile")
    return (
       <div>
          <ProfileInfo profile={props.profile} status={props.status} updateUserStatus={props.updateUserStatus} />

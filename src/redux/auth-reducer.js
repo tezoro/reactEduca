@@ -1,3 +1,5 @@
+import { Redirect } from "react-router-dom"
+import { stopSubmit } from "redux-form"
 import { authApi } from "../api/api"
 
 const SET_USER_DATA= "SET-USER-DATA"
@@ -16,8 +18,7 @@ const authReducer = (state = initialState, action) => {
        case SET_USER_DATA:
           return{
             ...state,
-            ...action.data,
-            isAuth:true
+            ...action.payload
 
          }
       
@@ -25,27 +26,38 @@ const authReducer = (state = initialState, action) => {
          return state
    }
 }
-//toDo homeWork 
-/*const lodinThunk=()=()=>{
 
-}
-
- */
-
-//toDo homeWork
-
- const setAuthUserData = (userId,email,login) =>
+ const setAuthUserData = (userId,email,login,isAuth) =>
    ({
       type: SET_USER_DATA,
-      data:{userId,email,login}
+      payload:{userId,email,login,isAuth}
    })
    
    export const getAuthUserData=()=>(dispatch)=>{
-       authApi.me()
+       return authApi.me()
          .then(responce => {
             if (responce.data.resultCode === 0) {
                let { email, id, login } = responce.data.data
-               dispatch(setAuthUserData(id, email, login))
+               dispatch(setAuthUserData(id, email, login, true))
+            }
+         })
+   }
+   export const login=(email,password,rememberMe=false)=>(dispatch)=>{
+       authApi.login(email,password,rememberMe)
+         .then(responce => {
+            if (responce.data.resultCode === 0) {
+              dispatch(getAuthUserData())
+            }else{
+            let message =responce.data.messages.length>0 ?  responce.data.messages[0]: "Some error"
+             dispatch(stopSubmit("login", {"_error":message}))     
+            }
+         })
+   }
+   export const logout=()=>(dispatch)=>{
+       authApi.logout()
+         .then(responce => {
+            if (responce.data.resultCode === 0) {
+              dispatch(setAuthUserData(null,null,null,false))
             }
          })
    }

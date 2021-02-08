@@ -2,6 +2,7 @@ import React from 'react';
 import Preloader from '../../common/preloader';
 import s from './ProfileInfo.module.css';
 import ProfileStatus from './ProfileStatus.jsx';
+import ProfileStatusWithHooks from './ProfileStatusWithHocks';
 
 function ProfileInfo(props) {
    if (!props.profile) {
@@ -19,7 +20,7 @@ function ProfileInfo(props) {
                <span>Lucking for a job: {props.profile.lookingForAJobDescription}</span><br></br>
 
                <span>Name: {props.profile.fullName}</span><br />
-               <ProfileStatus status={props.status} updateUserStatus={props.updateUserStatus} />
+               <ProfileStatusWithHooks status={props.status} updateUserStatus={props.updateUserStatus} />
             </div>
          </div>
       )

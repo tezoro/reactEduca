@@ -6,27 +6,25 @@ import { Textarea } from '../../common/formControl/formsComons'
 import s from "./MyPosts.module.css"
 import Post from './Posts/Post'
 
-class MyPosts extends React.Component {
-   componentDidMount() { }
-   onAddPost = (values) => {
+const MyPosts = React.memo(props => {
 
-      this.props.addPost(values.addPost)
+   let onAddPost = (values) => {
+
+      props.addPost(values.addPost)
    }
-
-   render() {
-      return (
-         <div className={s.postsBlock}>
-            <h3> my posts</h3>
-            <div>
-               <MyPostFormRedux onSubmit={this.onAddPost} />
-            </div>
-            <div className={s.posts}>
-               {this.props.posts.map(p => <Post message={p.message} likeCounts={p.likesCount} key={p.id} id={p.id} />)}
-            </div>
+   return (
+      <div className={s.postsBlock}>
+         <h3> my posts</h3>
+         <div>
+            <MyPostFormRedux onSubmit={onAddPost} />
          </div>
-      )
-   }
+         <div className={s.posts}>
+            {props.posts.map(p => <Post message={p.message} likeCounts={p.likesCount} key={p.id} id={p.id} />)}
+         </div>
+      </div>
+   )
 }
+)
 
 const maxLenght15 = maxLenght(15)
 const MyPostForm = (props) => {

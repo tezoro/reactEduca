@@ -3,7 +3,6 @@ import styles from "./formControl.module.css"
 
 
 const FormControl = ({ input, meta,child ,...props }) => {
-   debugger
    const hasError=meta.touched&&meta.error 
    return (
       <div className={styles.formControl+" "+(hasError?styles.error:"")}>
