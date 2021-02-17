@@ -14,7 +14,8 @@ import { getTotalUsersCount, getPageSize, getCurrentPage, getIsFetching, getFoll
 class UsersContainer extends React.Component {
 
    componentDidMount() {
-      this.props.getUsers(this.props.currentPage, this.props.pageSize)
+      const { currentPage, pageSize } = this.props
+      this.props.getUsers(currentPage, pageSize)
       /*  this.props.toggleIsFetching(true)
        usersApi.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
           this.props.toggleIsFetching(false)

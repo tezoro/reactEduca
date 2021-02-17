@@ -4,26 +4,29 @@ import { Redirect } from 'react-router-dom'
 import { Field, reduxForm } from 'redux-form'
 import { login } from '../../redux/auth-reducer'
 import { maxLenght, required } from '../../utilities/validators/validators'
-import { Input } from '../common/formControl/formsComons'
+import { createField, Input } from '../common/formControl/formsComons'
 import stylles from "../common/formControl/formControl.module.css"
 
 
-const LoginForm = (props) => {
+const LoginForm = ({ handleSubmit, error }) => {
    const maxLenght15 = maxLenght(15)
 
    return (
-      <form onSubmit={props.handleSubmit}>
+      <form onSubmit={handleSubmit}>
          <div>
-            <Field component={Input} validate={[required]} name={"email"} placeholder={"email"} />
+            {createField("email", "email", [required], Input)}
+            {/* <Field component={Input} validate={[required]} name={"email"} placeholder={"email"} /> */}
          </div>
          <div>
-            <Field component={Input} validate={[required, maxLenght15]} name={"password"} placeholder={"password"} type={"password"} />
+            {createField("password", "password", [required, maxLenght15], Input, { type: "password" })}
+            {/* <Field component={Input} validate={[required, maxLenght15]} name={"password"} placeholder={"password"} type={"password"} /> */}
          </div>
          <div>
-            <Field component={Input} name={"remember me"} type={"checkbox"} name="" id="" />remember me
+            {createField(null, "remeberMe", null, Input, { type: "checkbox" }, "remember me")}
+            {/* <Field component={Input} name={"remember me"} type={"checkbox"} />remember me */}
          </div>
-         {props.error && <div className={stylles.formSummaryError}>
-            {props.error}
+         {error && <div className={stylles.formSummaryError}>
+            {error}
          </div>}
          <div>
             <button>Submit</button>
@@ -36,11 +39,11 @@ const LoginReduxForm = reduxForm({
    form: "login"
 })(LoginForm)
 
-const Login = (props) => {
+const Login = ({ login, isAuth }) => {
    const onSubmit = (formData) => {
-      props.login(formData.email, formData.password, formData.rememberMe)
+      login(formData.email, formData.password, formData.rememberMe)
    }
-   if (props.isAuth) {
+   if (isAuth) {
       return <Redirect to={"/profile"} />
    }
    return <div>

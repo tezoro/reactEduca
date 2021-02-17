@@ -7,11 +7,14 @@ import s from "./MyPosts.module.css"
 import Post from './Posts/Post'
 
 const MyPosts = React.memo(props => {
-
    let onAddPost = (values) => {
 
       props.addPost(values.addPost)
    }
+   let postElement = [...props.posts]
+      .reverse()
+      .map(p => <Post message={p.message} likeCounts={p.likesCount} key={p.id} id={p.id} />)
+   console.log(postElement)
    return (
       <div className={s.postsBlock}>
          <h3> my posts</h3>
@@ -19,7 +22,7 @@ const MyPosts = React.memo(props => {
             <MyPostFormRedux onSubmit={onAddPost} />
          </div>
          <div className={s.posts}>
-            {props.posts.map(p => <Post message={p.message} likeCounts={p.likesCount} key={p.id} id={p.id} />)}
+            {postElement}
          </div>
       </div>
    )

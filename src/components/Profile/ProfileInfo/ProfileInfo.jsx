@@ -4,8 +4,8 @@ import s from './ProfileInfo.module.css';
 import ProfileStatus from './ProfileStatus.jsx';
 import ProfileStatusWithHooks from './ProfileStatusWithHocks';
 
-function ProfileInfo(props) {
-   if (!props.profile) {
+function ProfileInfo({ profile, status, updateUserStatus }) {
+   if (!profile) {
       return <>
          <Preloader />
       </>
@@ -16,11 +16,11 @@ function ProfileInfo(props) {
                <img className={s.ava_img} src="https://i.pinimg.com/originals/04/a8/73/04a87347b071ec062a586e02c23f6221.png" alt="non" />
             </div>
             <div className={s.discriptionBlock}>
-               <img className={s.profile__img} src={props.profile.photos.large} alt="img" /><br />
-               <span>Lucking for a job: {props.profile.lookingForAJobDescription}</span><br></br>
+               <img className={s.profile__img} src={profile.photos.large} alt="img" /><br />
+               <span>Lucking for a job: {profile.lookingForAJobDescription}</span><br></br>
 
-               <span>Name: {props.profile.fullName}</span><br />
-               <ProfileStatusWithHooks status={props.status} updateUserStatus={props.updateUserStatus} />
+               <span>Name: {profile.fullName}</span><br />
+               <ProfileStatusWithHooks status={status} updateUserStatus={updateUserStatus} />
             </div>
          </div>
       )

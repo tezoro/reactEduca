@@ -1,8 +1,9 @@
 import { profileApi, usersApi } from "../api/api"
 
 const ADD_POST = 'ADD-POST'
-const SET_USER_PROFILE='SET-USER-PROFILE'
+const SET_USER_PROFILE='profilePage/SET-USER-PROFILE'
 const SET_STATUS='SET-STATUS'
+const DELETE_POST='DELETE-POST'
 
 let initialState = {
    posts: [{
@@ -16,12 +17,12 @@ let initialState = {
          likesCount: 10
       },
       {
-         id: 2,
+         id: 3,
          message: 'hi,itm my first post',
          likesCount: 10
       },
       {
-         id: 2,
+         id: 4,
          message: 'hi,itm my first post',
          likesCount: 10
       }
@@ -45,7 +46,12 @@ const profileReducer = (state = initialState, action) => {
       case ADD_POST:
          return {
             ...state,
-            posts:[...state.posts,{id: 5, message: action.newPostText, likesCount: 0}]
+            posts:[...state.posts,{id: Math.floor(Math.random()*10), message: action.newPostText, likesCount: 0}]
+         }
+      case DELETE_POST:
+         return {
+            ...state,
+            posts:state.posts.filter(p=>p.id!=action.postId)
          }
 
       default:
@@ -53,26 +59,27 @@ const profileReducer = (state = initialState, action) => {
       
    }
 }
+export const deletePostActionCreator=(postId)=>({
+   type:DELETE_POST,postId
+})
+
 const setUserProfile=(profile)=>({
    type:SET_USER_PROFILE,
    profile
 })
 
-export const getUserProfile=(userId)=>(dispatch)=>{
-    usersApi.getProfile(userId).then(response => {
+export const getUserProfile=(userId)=> async (dispatch)=>{
+   let response = await usersApi.getProfile(userId)
          dispatch(setUserProfile(response.data))
-      })
 }
-export const getUserStatus=(userId)=>(dispatch)=>{
-    profileApi.getStatus(userId).then(response => {
+export const getUserStatus=(userId)=>async(dispatch)=>{
+   let response= await profileApi.getStatus(userId)
          dispatch(setStatusAC(response.data))
-      })
 }
-export const updateUserStatus=(status)=>(dispatch)=>{
-    profileApi.updateStatus(status).then(response => {
+export const updateUserStatus=(status)=>async(dispatch)=>{
+    let response = await profileApi.updateStatus(status)
        if(response.data.resultCode===0){
          dispatch(setStatusAC(status))}
-      })
 }
 
 export const addPostActionCreator = (newPostText) => ({
