@@ -2,6 +2,7 @@
   "name": "react_packages",
   "version": "0.1.0",
   "private": true,
+  "homepage": "",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.2.2",
@@ -41,5 +42,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^3.1.0",
+    "react-test-renderer": "^17.0.1"
   }
 }
