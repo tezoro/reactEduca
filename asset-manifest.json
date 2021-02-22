@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/reactEduca/static/css/main.a750b8e4.chunk.css",
+    "main.js": "/reactEduca/static/js/main.2d3df8fc.chunk.js",
+    "main.js.map": "/reactEduca/static/js/main.2d3df8fc.chunk.js.map",
+    "runtime-main.js": "/reactEduca/static/js/runtime-main.418cb1e7.js",
+    "runtime-main.js.map": "/reactEduca/static/js/runtime-main.418cb1e7.js.map",
+    "static/js/2.8f0382af.chunk.js": "/reactEduca/static/js/2.8f0382af.chunk.js",
+    "static/js/2.8f0382af.chunk.js.map": "/reactEduca/static/js/2.8f0382af.chunk.js.map",
+    "static/js/3.b5583742.chunk.js": "/reactEduca/static/js/3.b5583742.chunk.js",
+    "static/js/3.b5583742.chunk.js.map": "/reactEduca/static/js/3.b5583742.chunk.js.map",
+    "index.html": "/reactEduca/index.html",
+    "static/css/main.a750b8e4.chunk.css.map": "/reactEduca/static/css/main.a750b8e4.chunk.css.map",
+    "static/js/2.8f0382af.chunk.js.LICENSE.txt": "/reactEduca/static/js/2.8f0382af.chunk.js.LICENSE.txt",
+    "static/js/main.2d3df8fc.chunk.js.LICENSE.txt": "/reactEduca/static/js/main.2d3df8fc.chunk.js.LICENSE.txt",
+    "static/media/preloader.b99e4406.svg": "/reactEduca/static/media/preloader.b99e4406.svg",
+    "static/media/userImage.73a0bc1f.png": "/reactEduca/static/media/userImage.73a0bc1f.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.418cb1e7.js",
+    "static/js/2.8f0382af.chunk.js",
+    "static/css/main.a750b8e4.chunk.css",
+    "static/js/main.2d3df8fc.chunk.js"
+  ]
+}
