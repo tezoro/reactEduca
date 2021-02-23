@@ -1,6 +1,6 @@
 import { connect, Provider } from 'react-redux'
 import React from 'react'
-import { BrowserRouter, Route } from 'react-router-dom'
+import { HashRouter, Route } from 'react-router-dom'
 import './App.css'
 import DialogsContainer from './components/Dialogs/DialogsContainer'
 import HeaderContainer from './components/Header/HeaderContainer'
@@ -26,7 +26,7 @@ class App extends React.Component {
       }
 
       return (
-         <BrowserRouter>
+         <HashRouter basename={process.env.PUBLIC_URL}>
             <div className="app-wrapper">
                <HeaderContainer />
                <Navbar />
@@ -40,7 +40,7 @@ class App extends React.Component {
                   <Route path="/login" render={() => <LoginPage />} />
                </div>
             </div>
-         </BrowserRouter>
+         </HashRouter>
       )
    }
 }
