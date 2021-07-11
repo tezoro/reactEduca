@@ -1,13 +1,8 @@
 import React from 'react'
-import {
-   connect
-} from 'react-redux'
-import { follow, setUsers, unfollow, setCurrentPage, setTotalUsersCount, toggleIsFetching, toggleIsFollowing, getUsers } from '../../redux/users-reducer'
-import * as axios from 'axios'
+import { connect } from 'react-redux'
+import { follow, unfollow, setCurrentPage, toggleIsFollowing, getUsers } from '../../redux/users-reducer'
 import Users from './Users'
 import Preloader from '../common/preloader'
-import { usersApi } from '../../api/api'
-import { withAuthRedirect } from '../../hoc/withAuthRedirect'
 import { compose } from 'redux'
 import { getTotalUsersCount, getPageSize, getCurrentPage, getIsFetching, getFollowingInProgrees, getUsers1 } from '../../redux/users-selectors'
 
@@ -15,6 +10,7 @@ class UsersContainer extends React.Component {
 
    componentDidMount() {
       const { currentPage, pageSize } = this.props
+      //!!thunk
       this.props.getUsers(currentPage, pageSize)
       /*  this.props.toggleIsFetching(true)
        usersApi.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
@@ -23,14 +19,16 @@ class UsersContainer extends React.Component {
           this.props.setTotalUsersCount(data.totalCount)
  
        }) */
+
    }
 
    onPageChanged = (pageNumber) => {
       this.props.getUsers(pageNumber, this.props.pageSize)
    }
 
+
    render() {
-      console.log("render")
+      console.log('render')
       return <>
          {this.props.isFetching ? <Preloader /> : null}
          <Users totalUsersCount={this.props.totalUsersCount}

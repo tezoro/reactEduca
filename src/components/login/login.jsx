@@ -10,6 +10,7 @@ import stylles from "../common/formControl/formControl.module.css"
 
 const LoginForm = ({ handleSubmit, error }) => {
    const maxLenght15 = maxLenght(15)
+   debugger
 
    return (
       <form onSubmit={handleSubmit}>
@@ -22,7 +23,7 @@ const LoginForm = ({ handleSubmit, error }) => {
             {/* <Field component={Input} validate={[required, maxLenght15]} name={"password"} placeholder={"password"} type={"password"} /> */}
          </div>
          <div>
-            {createField(null, "remeberMe", null, Input, { type: "checkbox" }, "remember me")}
+            {createField(null, "rememberMe", null, Input, { type: "checkbox" }, "remember me")}
             {/* <Field component={Input} name={"remember me"} type={"checkbox"} />remember me */}
          </div>
          {error && <div className={stylles.formSummaryError}>

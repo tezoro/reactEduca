@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { autofill } from 'redux-form'
 import stylles from './paginator.module.css'
 
 let Paginator = ({ totalUsersCount, pageSize, currentPage, onPageChanged, portionSize = 10 }) => {
@@ -13,13 +14,12 @@ let Paginator = ({ totalUsersCount, pageSize, currentPage, onPageChanged, portio
    let [portionNumber, setPortionNumber] = useState(2)
    let leftPortionSize = (portionNumber - 1) * portionSize + 1
    let rightPortionSize = portionNumber * portionSize
-   debugger
    return (
 
       <div className={stylles.paginator}>
          {portionNumber > 1 && <button onClick={() => { setPortionNumber(portionNumber - 1) }}>prev</button>}
          {pages.filter(u => u >= leftPortionSize && u <= rightPortionSize).map((p) => {
-            return <span onClick={(e) => { onPageChanged(p) }} className={currentPage === p && stylles.selectedPage} >{p}</span>
+            return <span onClick={(e) => { onPageChanged(p) }} className={currentPage === p && stylles.selectedPage} >{` ${p} `}</span>
          })}
          {maxPortion > portionNumber && <button onClick={() => { setPortionNumber(portionNumber + 1) }}>next</button>}
       </div>
@@ -27,4 +27,4 @@ let Paginator = ({ totalUsersCount, pageSize, currentPage, onPageChanged, portio
    )
 }
 
-export default Paginator 
+export default Paginator

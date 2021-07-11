@@ -8,7 +8,12 @@ function Profile(props) {
    console.log("profile")
    return (
       <div>
-         <ProfileInfo profile={props.profile} status={props.status} updateUserStatus={props.updateUserStatus} />
+         <ProfileInfo profile={props.profile}
+            savePhoto={props.savePhoto}
+            isOwner={props.isOwner}
+            status={props.status}
+            updateUserStatus={props.updateUserStatus}
+            saveProfile={props.saveProfile} />
          <MyPostsContainer />
       </div>
    )
